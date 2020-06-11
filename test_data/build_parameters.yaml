@@ -1,4 +1,8 @@
 all_parameters:
+  - key: DISTRIBUTION_TYPE
+    values: [Firebase, Store, Local]
+    default_value: Firebase
+
   - key: OBFUSCATE
     values: [Obfuscate, NoObfuscate]
     default_value: Obfuscate
@@ -18,10 +22,6 @@ all_parameters:
   - key: TEST_PANEL
     values: [WithTestPanel, WithoutTestPanel]
     default_value: WithoutTestPanel
-
-  - key: DISTRIBUTION_TYPE
-    values: [Firebase, Store, Local]
-    default_value: Firebase
 
   - key: BUILD_TYPE
     values: [Debug, Release]
@@ -71,6 +71,14 @@ project_restrictions:
         values: [Customer]
       - key: SERVER_ENVIRONMENT
         values: [Prod]
+
+  # Firebase -> Release
+  - when:
+    - key: DISTRIBUTION_TYPE
+      value: Firebase
+    set:
+      - key: BUILD_TYPE
+        values: [Release]
 
 ci_parameters:
   - key: DISTRIBUTION_TYPE

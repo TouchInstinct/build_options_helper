@@ -20,5 +20,6 @@ class writeable_dir(argparse.Action):
 class ArgumentParser(argparse.ArgumentParser):
     def configure(self):
         self.add_argument('--build-parameters-path', '-bp', default="build_parameters.yaml", type=open, required=True)
-        self.add_argument('--web-parameters-output-folder', '-o', action=writeable_dir, default=tempfile.mkdtemp(), required=True)
+        self.add_argument('--output-folder', '-o', action=writeable_dir, default=tempfile.mkdtemp(), required=True)
+        self.add_argument('--render', '-r', choices=['ios_build_settings', 'team_city_web_parameters'], type=str, required=True)
         self.add_argument('--platform', '-p', choices=['ios', 'android'], type=str, required=True)
