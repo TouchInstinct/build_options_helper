@@ -80,7 +80,7 @@ class XCConfigOption(XCConfigOptionTuple):
     def swift_active_compilation_conditions(selectors_dict):
         return XCConfigOption(
             key="SWIFT_ACTIVE_COMPILATION_CONDITIONS",
-            value=" ".join(map(str.upper, selectors_dict.values()))
+            value=" ".join(map(lambda sv: sv.upper(), selectors_dict.values()))
         )
 
     @staticmethod
@@ -116,5 +116,5 @@ class XCConfigOption(XCConfigOptionTuple):
                                                          selectors_dict, expected_value="Debug"):
         return XCConfigOption(
             key=key,
-            value=value_if_contains if expected_value.upper() in map(str.upper, selectors_dict.values()) else otherwise_value
+            value=value_if_contains if expected_value.upper() in map(lambda sv: sv.upper(), selectors_dict.values()) else otherwise_value
         )
