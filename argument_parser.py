@@ -19,7 +19,18 @@ class writeable_dir(argparse.Action):
 
 class ArgumentParser(argparse.ArgumentParser):
     def configure(self):
-        self.add_argument('--build-parameters-path', '-bp', default="build_parameters.yaml", type=open, required=True)
-        self.add_argument('--output-folder', '-o', action=writeable_dir, default=tempfile.mkdtemp(), required=True)
-        self.add_argument('--render', '-r', choices=['ios_build_settings', 'team_city_web_parameters'], type=str, required=True)
-        self.add_argument('--platform', '-p', choices=['ios', 'android'], type=str, required=True)
+        self.add_argument('--build-parameters-path', '-bp',
+                        default="build_parameters.yaml", type=open,
+                        required=True, help="Relative or absolute path to build parameters in yaml format.")
+
+        self.add_argument('--output-folder', '-o',
+                        action=writeable_dir, default=tempfile.mkdtemp(),
+                        required=True, help="Path to writeable directory for execution results.")
+
+        self.add_argument('--render', '-r',
+                        choices=['ios_build_settings', 'team_city_web_parameters'], type=str,
+                        required=True, help="Task that should be done.")
+
+        self.add_argument('--platform', '-p',
+                        choices=['ios', 'android'], type=str,
+                        required=True, help="Platform for which build parameters rules should be applied.")
