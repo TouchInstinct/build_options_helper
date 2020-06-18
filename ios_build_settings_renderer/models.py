@@ -5,6 +5,8 @@ from __future__ import unicode_literals # python 2/3 support
 from .raw_models import *
 from core.models import Selector
 
+from collections import OrderedDict
+
 class XCConfig(XCConfigTuple):
 
     DISTIBUTION_TYPE_KEY = "DISTRIBUTION_TYPE"
@@ -41,10 +43,10 @@ class XCConfig(XCConfigTuple):
     @staticmethod
     def __make_dict_from_selectors(selectors):
         # compatibility mode
-        return { s.key : (XCConfig.__account_type_from_distribution_type(s.value) if s.key == XCConfig.DISTIBUTION_TYPE_KEY else s.value) for s in selectors }
+        return OrderedDict((s.key, (XCConfig.__account_type_from_distribution_type(s.value) if s.key == XCConfig.DISTIBUTION_TYPE_KEY else s.value)) for s in selectors)
 
         # normal mode
-        # return { s.key : s.value for s in selectors }
+        # return OrderedDict((s.key, s.value) for s in selectors)
 
     @staticmethod
     def __modify_selector_if_needed(selector):
