@@ -36,7 +36,9 @@ class XCConfig(XCConfigTuple):
                 XCConfigOption.code_sign_identity,
                 XCConfigOption.gcc_optimization_level,
                 XCConfigOption.swift_optimization_level,
-                XCConfigOption.swift_compilation_mode
+                XCConfigOption.swift_compilation_mode,
+                XCConfigOption.assetcatalog_compiler_optimization,
+                XCConfigOption.other_swift_flags
             ])
         )
 
@@ -112,6 +114,14 @@ class XCConfigOption(XCConfigOptionTuple):
     @staticmethod
     def swift_compilation_mode(selectors_dict):
         return XCConfigOption.__from_key_and_value_based_on_value_in_selectors("SWIFT_COMPILATION_MODE", "singlefile", "wholemodule", selectors_dict)
+
+    @staticmethod
+    def assetcatalog_compiler_optimization(selectors_dict):
+        return XCConfigOption.__from_key_and_value_based_on_value_in_selectors("ASSETCATALOG_COMPILER_OPTIMIZATION", "time", "space", selectors_dict)
+
+    @staticmethod
+    def other_swift_flags(selectors_dict):
+        return XCConfigOption.__from_key_and_value_based_on_value_in_selectors("OTHER_SWIFT_FLAGS", "$(inherited) -Xfrontend -warn-long-expression-type-checking=500 -Xfrontend -warn-long-function-bodies=500", "$(inherited)", selectors_dict)
 
     @staticmethod
     def __from_key_and_value_based_on_value_in_selectors(key, value_if_contains, otherwise_value,
