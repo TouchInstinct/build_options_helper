@@ -121,7 +121,7 @@ class XCConfigOption(XCConfigOptionTuple):
 
     @staticmethod
     def other_swift_flags(selectors_dict):
-        return XCConfigOption.__from_key_and_value_based_on_value_in_selectors("OTHER_SWIFT_FLAGS", "$(inherited) -Xfrontend -warn-long-expression-type-checking=500 -Xfrontend -warn-long-function-bodies=500", "$(inherited)", selectors_dict)
+        return XCConfigOption.__from_key_and_value_based_on_value_in_selectors("OTHER_SWIFT_FLAGS", "$(inherited) -Xfrontend -warn-long-expression-type-checking=500 -Xfrontend -warn-long-function-bodies=500 -Xfrontend -enable-actor-data-race-checks", "$(inherited)", selectors_dict)
 
     @staticmethod
     def __from_key_and_value_based_on_value_in_selectors(key, value_if_contains, otherwise_value,
