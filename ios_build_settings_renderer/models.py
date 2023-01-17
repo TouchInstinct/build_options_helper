@@ -38,7 +38,10 @@ class XCConfig(XCConfigTuple):
                 XCConfigOption.swift_optimization_level,
                 XCConfigOption.swift_compilation_mode,
                 XCConfigOption.assetcatalog_compiler_optimization,
-                XCConfigOption.other_swift_flags
+                XCConfigOption.other_swift_flags,
+                XCConfigOption.deployment_postprocessing,
+                XCConfigOption.strip_linked_product,
+                XCConfigOption.stripflags
             ])
         )
 
@@ -122,6 +125,18 @@ class XCConfigOption(XCConfigOptionTuple):
     @staticmethod
     def other_swift_flags(selectors_dict):
         return XCConfigOption.__from_key_and_value_based_on_value_in_selectors("OTHER_SWIFT_FLAGS", "$(inherited) -Xfrontend -warn-long-expression-type-checking=500 -Xfrontend -warn-long-function-bodies=500 -Xfrontend -enable-actor-data-race-checks", "$(inherited)", selectors_dict)
+
+    @staticmethod
+    def deployment_postprocessing(selectors_dict):
+        return XCConfigOption.__from_key_and_value_based_on_value_in_selectors("DEPLOYMENT_POSTPROCESSING", "YES", "NO", selectors_dict, "Release")
+
+    @staticmethod
+    def strip_linked_product(selectors_dict):
+        return XCConfigOption.__from_key_and_value_based_on_value_in_selectors("STRIP_LINKED_PRODUCT", "YES", "NO", selectors_dict, "Release")
+
+    @staticmethod
+    def stripflags(selectors_dict):
+        return XCConfigOption.__from_key_and_value_based_on_value_in_selectors("STRIPFLAGS", "-rSTx", "", selectors_dict, "Release")
 
     @staticmethod
     def __from_key_and_value_based_on_value_in_selectors(key, value_if_contains, otherwise_value,
