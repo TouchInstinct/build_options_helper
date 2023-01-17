@@ -40,7 +40,7 @@ class XCConfig(XCConfigTuple):
                 XCConfigOption.assetcatalog_compiler_optimization,
                 XCConfigOption.other_swift_flags,
                 XCConfigOption.deployment_postprocessing,
-                XCConfigOption.strip_installed_product,
+                XCConfigOption.strip_linked_product,
                 XCConfigOption.stripflags
             ])
         )
@@ -131,8 +131,8 @@ class XCConfigOption(XCConfigOptionTuple):
         return XCConfigOption.__from_key_and_value_based_on_value_in_selectors("DEPLOYMENT_POSTPROCESSING", "YES", "NO", selectors_dict, "Release")
 
     @staticmethod
-    def strip_installed_product(selectors_dict):
-        return XCConfigOption.__from_key_and_value_based_on_value_in_selectors("STRIP_INSTALLED_PRODUCT", "YES", "NO", selectors_dict, "Release")
+    def strip_linked_product(selectors_dict):
+        return XCConfigOption.__from_key_and_value_based_on_value_in_selectors("STRIP_LINKED_PRODUCT", "YES", "NO", selectors_dict, "Release")
 
     @staticmethod
     def stripflags(selectors_dict):
