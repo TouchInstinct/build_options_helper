@@ -128,15 +128,15 @@ class XCConfigOption(XCConfigOptionTuple):
 
     @staticmethod
     def deployment_postprocessing(selectors_dict):
-        return XCConfigOption.__from_key_and_value_based_on_value_in_selectors("DEPLOYMENT_POSTPROCESSING", "YES", "NO", selectors_dict)
+        return XCConfigOption.__from_key_and_value_based_on_value_in_selectors("DEPLOYMENT_POSTPROCESSING", "YES", "NO", selectors_dict, "Release")
 
     @staticmethod
     def strip_installed_product(selectors_dict):
-        return XCConfigOption.__from_key_and_value_based_on_value_in_selectors("STRIP_INSTALLED_PRODUCT", "YES", "NO", selectors_dict)
+        return XCConfigOption.__from_key_and_value_based_on_value_in_selectors("STRIP_INSTALLED_PRODUCT", "YES", "NO", selectors_dict, "Release")
 
     @staticmethod
     def stripflags(selectors_dict):
-        return XCConfigOption.__from_key_and_value_based_on_value_in_selectors("STRIPFLAGS", "-rSTx", "", selectors_dict)
+        return XCConfigOption.__from_key_and_value_based_on_value_in_selectors("STRIPFLAGS", "-rSTx", "", selectors_dict, "Release")
 
     @staticmethod
     def __from_key_and_value_based_on_value_in_selectors(key, value_if_contains, otherwise_value,
